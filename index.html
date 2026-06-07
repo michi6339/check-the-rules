@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)file:///Users/michi/Downloads/index_1.html -->
+<html lang="ja"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="うねり底値買い">
+<meta name="theme-color" content="#f0f4ff">
+<title>うねり底値買いロードマップ</title>
+<link href="./index_files/css2" rel="stylesheet">
+<style>
+  :root {
+    --bg-top: #e8eeff;
+    --bg-mid: #f0f7f4;
+    --bg-bottom: #fef9f0;
+    --accent: #3d6b8e;
+    --accent-light: #5a8aad;
+    --accent-pale: #ddeaf5;
+    --green: #2d7d5a;
+    --green-pale: #d4efe4;
+    --text-dark: #1a2330;
+    --text-mid: #3a4a5c;
+    --text-soft: #5a6a7a;
+    --text-muted: #8a9aaa;
+    --border: rgba(61, 107, 142, 0.15);
+    --border-mid: rgba(61, 107, 142, 0.25);
+    --card-bg: rgba(255,255,255,0.75);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: linear-gradient(160deg, var(--bg-top) 0%, var(--bg-mid) 50%, var(--bg-bottom) 100%);
+    background-attachment: fixed;
+    color: var(--text-dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    padding: 56px 24px 20px;
+    background: linear-gradient(180deg, rgba(232,238,255,0.95) 0%, transparent 100%);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+  }
+  .header-label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  .header-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-dark);
+    font-family: 'Noto Serif JP', serif;
+    line-height: 1.4;
+  }
+  .header-date {
+    font-size: 12px;
+    color: var(--text-soft);
+    margin-top: 4px;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .content {
+    padding: 20px 16px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  /* ── SECTION CARD ── */
+  .section-card {
+    background: var(--card-bg);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    backdrop-filter: blur(8px);
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 16px 14px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(135deg, var(--accent-pale) 0%, rgba(255,255,255,0) 100%);
+  }
+  .section-num {
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-dark);
+    font-family: 'Noto Serif JP', serif;
+    line-height: 1.4;
+  }
+
+  .section-body {
+    padding: 14px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* ── TEXT BLOCKS ── */
+  .text-block {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.9;
+    white-space: pre-wrap;
+  }
+
+  /* ── NOTE BOX (注意) ── */
+  .note-box {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.8;
+    padding: 10px 12px;
+    background: var(--accent-pale);
+    border-radius: 8px;
+    border-left: 3px solid var(--accent);
+    white-space: pre-wrap;
+  }
+
+  /* ── SUB HEADING ── */
+  .sub-heading {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+    margin-top: 2px;
+  }
+
+  /* ── BULLET LIST ── */
+  .bullet-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .bullet-list li {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.75;
+    padding: 5px 0 5px 18px;
+    position: relative;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .bullet-list li:last-child { border-bottom: none; }
+  .bullet-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 11px;
+    top: 7px;
+  }
+
+  /* ── LABEL LIST (ランク付きなど) ── */
+  .label-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .label-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    color: white;
+    background: var(--accent);
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 4px;
+  }
+  .label-tag.green { background: var(--green); }
+  .label-tag.muted { background: var(--text-muted); }
+
+  /* ── DIVIDER ── */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: var(--border);
+    margin: 2px 0;
+  }
+
+  /* ── KOTOWAZA (合言葉) ── */
+  .kotowaza {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 15px;
+    color: var(--text-dark);
+    line-height: 2.2;
+    text-align: center;
+    padding: 8px 0;
+    white-space: pre-wrap;
+  }
+
+  /* ── STEP BLOCKS (買い方1〜3回目) ── */
+  .step-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .step-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .step-num {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--green) 100%);
+    color: white;
+    font-size: 11px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-text {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-label">Uneri Road Map</div>
+  <div class="header-title">うねり底値買いロードマップ</div>
+  <div class="header-date" id="today-date">2026年6月7日（日）</div>
+</div>
+
+<div class="content">
+
+  <!-- 1. 最終ゴール -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <span class="section-title">最終ゴール</span>
+    </div>
+    <div class="section-body">
+      <div class="text-block">コツコツ増やし、暴落相場を利用して、
+10年後に資産1億円を目指す。
+
+通常時は、小さく回転して経験と利益を積む。
+本番は暴落時。
+
+暴落時に初めて銘柄を探さない。
+普段から見ているロックオン銘柄だけを買う。</div>
+    </div>
+  </div>
+
+  <!-- 2. 基本方針 -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <span class="section-title">基本方針</span>
+    </div>
+    <div class="section-body">
+      <div class="text-block">上がっている銘柄を追いかけない。
+
+普段から見ている銘柄が、
+自分の買いたい位置まで下がってきたときだけ仕掛ける。
+
+チャンスは追いかけない。
+待って拾う。
+
+大事なのは、買い・売り・待ち。
+特に「待ち」を徹底する。</div>
+    </div>
+  </div>
+
+  <!-- 3. ロックオン銘柄を作る -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <span class="section-title">ロックオン銘柄を作る</span>
+    </div>
+    <div class="section-body">
+      <div class="text-block">最終的には、うねりチャートを形成している銘柄を
+100銘柄程度ロックオンする。
+
+ただし、最初から100銘柄を完璧に管理しない。</div>
+      <div class="divider"></div>
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-text">20〜30銘柄で練習する。</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-text">50〜100銘柄に増やす。</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-text">得意銘柄を10〜20銘柄に絞り、何度も回転する。</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-text">本当にクセを把握できた銘柄だけ、将来的に空売りやヘッジも検討する。</div>
+        </div>
+      </div>
+      <div class="note-box">まずは買いのうねり取りで型を固める。</div>
+    </div>
+  </div>
+
+  <!-- 4. 対象銘柄の条件 -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <span class="section-title">対象銘柄の条件</span>
+    </div>
+    <div class="section-body">
+      <div class="text-block">基本は東証プライム銘柄から選ぶ。</div>
+
+      <div class="sub-heading">優先する銘柄</div>
+      <ul class="bullet-list">
+        <li>大型〜中型株</li>
+        <li>出来高がある</li>
+        <li>ボックスを作りやすい</li>
+        <li>下限と上限が見えやすい</li>
+        <li>下げたあと戻る実績がある</li>
+        <li>財務が極端に悪くない</li>
+        <li>事業が消えにくい</li>
+        <li>BtoB、製造業、機械、素材、商社、地銀、インフラ、防衛、電機など</li>
+        <li>サポートライン、レジスタンスラインが見えやすい</li>
+      </ul>
+
+      <div class="sub-heading">避ける銘柄</div>
+      <ul class="bullet-list">
+        <li>グロース株</li>
+        <li>テーマ人気だけで上がった銘柄</li>
+        <li>赤字や業績不安が大きい銘柄</li>
+        <li>出来高が少ない銘柄</li>
+        <li>一度崩れると戻る理由が弱い銘柄</li>
+        <li>過去チャートの下限が信用しにくい銘柄</li>
+      </ul>
+
+      <div class="note-box">「下がっているから安い」ではなく、
+「戻る理由があるから買える」と考える。</div>
+    </div>
+  </div>
+
+  <!-- 5. 業界選定の方針 -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <span class="section-title">業界選定の方針</span>
+    </div>
+    <div class="section-body">
+      <div class="text-block">銘柄選定は、SNSやYouTube起点ではなく、
+業界地図などで業界全体を見てから行う。</div>
+
+      <div class="label-group">
+        <div>
+          <div class="label-tag">Aランク候補</div>
+          <ul class="bullet-list">
+            <li>機械</li>
+            <li>電機</li>
+            <li>素材</li>
+            <li>鉄鋼</li>
+            <li>非鉄</li>
+            <li>専門商社</li>
+            <li>地銀</li>
+            <li>倉庫、物流</li>
+            <li>インフラ</li>
+            <li>防衛</li>
+            <li>重工</li>
+          </ul>
+        </div>
+        <div>
+          <div class="label-tag green">Bランク候補</div>
+          <ul class="bullet-list">
+            <li>海運</li>
+            <li>化学</li>
+            <li>建設</li>
+            <li>総合商社</li>
+            <li>自動車部品</li>
+            <li>農機、産業機械</li>
+          </ul>
+        </div>
+        <div>
+          <div class="label-tag muted">注意して扱う</div>
+          <ul class="bullet-list">
+            <li>半導体関連</li>
+            <li>グロース寄りテーマ株</li>
+            <li>バイオ</li>
+            <li>赤字成長株</li>
+            <li>出来高の薄い小型株</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note-box">BtoBだから安全、プライムだから安全とは考えない。
+必ずチャートの型、財務、出来高、業界内ポジションを見る。</div>
+    </div>
+  </div>
+
+  <!-- 6. 毎日の監視ルール -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <span class="section-title">毎日の監視ルール</span>
+    </div>
+    <div class="section-body">
+      <div class="text-block">毎日すべてを深く分析しない。
+作業時間は10〜15分程度に抑える。
+
+目的は、
+ロックオン銘柄がストライクゾーンに近づいているか、
+保有銘柄が想定通りに動いているかを確認すること。</div>
+
+      <div class="sub-heading">ロックオン銘柄を見るポイント</div>
+      <ul class="bullet-list">
+        <li>ボックス下限に近づいているか</li>
+        <li>過去の反発ラインに近づいているか</li>
+        <li>週足、月足でサポート付近にいるか</li>
+        <li>急落して売られすぎていないか</li>
+        <li>出来高に変化があるか</li>
+        <li>25日線、75日線、200日線との位置関係はどうか</li>
+      </ul>
+
+      <div class="sub-heading">判定</div>
+      <ul class="bullet-list">
+        <li>監視継続</li>
+        <li>ストライクゾーン接近</li>
+        <li>詳細調査</li>
+        <li>買い候補</li>
+        <li>見送り</li>
+      </ul>
+
+      <div class="sub-heading">保有銘柄を見るポイント（下げている場合）</div>
+      <ul class="bullet-list">
+        <li>想定サポートラインとの乖離はどうか</li>
+        <li>追加買いの位置に近づいているか</li>
+        <li>構造的な変化や悪材料が出ていないか</li>
+        <li>想定レンジ内の下落か、前提が崩れた下落か</li>
+      </ul>
+
+      <div class="sub-heading">保有銘柄を見るポイント（上がっている場合）</div>
+      <ul class="bullet-list">
+        <li>レジスタンスラインに近づいているか</li>
+        <li>ボックス上限に近づいているか</li>
+        <li>利確目標に近づいているか</li>
+        <li>欲で保有を引き延ばしていないか</li>
+      </ul>
+
+      <div class="sub-heading">判定</div>
+      <ul class="bullet-list">
+        <li>保有継続</li>
+        <li>追加検討</li>
+        <li>利確検討</li>
+        <li>要確認</li>
+        <li>見送り</li>
+      </ul>
+
+      <div class="note-box">毎日の目的は「買うこと」ではなく、
+買える型を探し、保有銘柄の状態を確認すること。</div>
+    </div>
+  </div>
+
+  <!-- 7. 買い判断・資金管理ルール -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <span class="section-title">買い判断・資金管理ルール</span>
+    </div>
+    <div class="section-body">
+      <div class="text-block">ストライクゾーンに来ても、チャートだけで買わない。
+
+カブタン、直近の決算短信、Claudeなどを使って確認する。</div>
+
+      <div class="sub-heading">確認すること</div>
+      <ul class="bullet-list">
+        <li>直近決算で業績が大きく悪化していないか</li>
+        <li>下方修正が出ていないか</li>
+        <li>赤字転落していないか</li>
+        <li>財務に不安がないか</li>
+        <li>構造的な悪材料が出ていないか</li>
+        <li>業界全体の悪化か、個別企業の問題か</li>
+        <li>過去のレンジに戻る理由があるか</li>
+      </ul>
+
+      <div class="sub-heading">買ってよい条件</div>
+      <ul class="bullet-list">
+        <li>ロックオン銘柄である</li>
+        <li>ストライクゾーンに来ている</li>
+        <li>業績、財務、ニュースに致命的問題がない</li>
+        <li>過去の反発ラインに近い</li>
+        <li>分割買いの計画がある</li>
+        <li>利確ラインが決まっている</li>
+        <li>構造的な前提が崩れていない</li>
+      </ul>
+
+      <div class="sub-heading">買ってはいけない条件</div>
+      <ul class="bullet-list">
+        <li>上がっているから買いたい</li>
+        <li>置いていかれそうで焦っている</li>
+        <li>SNSやYouTubeで話題になっている</li>
+        <li>チャートの型がわからない</li>
+        <li>直近高値で頭を抑えられている</li>
+        <li>ダブルトップの可能性がある</li>
+        <li>構造的な悪材料が出ている</li>
+      </ul>
+
+      <div class="sub-heading">買い方</div>
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-text">サポートライン付近で打診買い</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-text">さらに下げた場合の次の支持線で追加</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-text">暴落、投げ売り、最終ラインで追加</div>
+        </div>
+      </div>
+
+      <div class="sub-heading">資金管理</div>
+      <ul class="bullet-list">
+        <li>一発で買わない</li>
+        <li>追いかけ買いをしない</li>
+        <li>上がったから追加しない</li>
+        <li>待機資金を必ず残す</li>
+        <li>暴落時用の予備資金を残す</li>
+        <li>1銘柄あたりの最大投入額を決める</li>
+        <li>同時保有銘柄数を増やしすぎない</li>
+        <li>勝ち方が安定してから投入額を増やす</li>
+      </ul>
+
+      <div class="note-box">損切りは基本前提にしない。
+ただし、業績悪化、財務不安、事業環境の変化など、
+構造的な前提が崩れた場合は撤退を検討する。
+
+自分は、損をする恐怖よりも、
+上昇を逃す恐怖に弱い。
+
+だから、上がっている銘柄を追わない。</div>
+    </div>
+  </div>
+
+  <!-- 8. 売りルール -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <span class="section-title">売りルール</span>
+    </div>
+    <div class="section-body">
+      <div class="text-block">売り場は、銘柄ごとのレジスタンスラインを基準にする。</div>
+
+      <div class="sub-heading">利確の目安</div>
+      <ul class="bullet-list">
+        <li>過去の上限</li>
+        <li>ボックス上限</li>
+        <li>戻り売りが出やすいライン</li>
+        <li>前回高値付近</li>
+        <li>75日線、200日線付近</li>
+        <li>想定利幅に到達した時</li>
+      </ul>
+
+      <div class="note-box">利確後にさらに上がっても気にしない。
+それは自分の手法の範囲外。
+
+また下がってくるのを待つ。</div>
+    </div>
+  </div>
+
+  <!-- 9. 暴落時のルール -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">09</span>
+      <span class="section-title">暴落時のルール</span>
+    </div>
+    <div class="section-body">
+      <div class="text-block">本番は暴落時。
+
+普段の売買は、
+銘柄のクセを覚え、
+小さく利益を積み、
+経験を増やすための回転。</div>
+
+      <div class="sub-heading">暴落時の行動</div>
+      <ul class="bullet-list">
+        <li>初見の銘柄を買わない</li>
+        <li>普段から見ているロックオン銘柄だけを見る</li>
+        <li>Aランク銘柄を優先する</li>
+        <li>一気に資金を入れない</li>
+        <li>普段より慎重に分割買いする</li>
+        <li>さらに下がる前提で買う</li>
+      </ul>
+
+      <div class="note-box">暴落時こそ資金管理が最重要。
+底だと思っても、さらに下がる前提で分割する。</div>
+    </div>
+  </div>
+
+  <!-- 10. 簡易チェックルール -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">10</span>
+      <span class="section-title">簡易チェックルール</span>
+    </div>
+    <div class="section-body">
+      <div class="text-block">目的は、勝ちパターンを肌に馴染ませること。
+
+売買後に、以下だけ確認する。</div>
+
+      <ul class="bullet-list">
+        <li>ロックオン銘柄だったか</li>
+        <li>ストライクゾーンで買えたか</li>
+        <li>分割買いの計画があったか</li>
+        <li>追いかけ買いではなかったか</li>
+        <li>上昇を逃す恐怖で買っていなかったか</li>
+        <li>利確はレジスタンスラインを意識できたか</li>
+        <li>次回も同じ判断をしてよいか</li>
+      </ul>
+
+      <div class="note-box">細かく記録しすぎない。
+目的は反省文を書くことではなく、
+勝ちパターンを体に覚えさせること。</div>
+    </div>
+  </div>
+
+  <!-- 11. 毎日の合言葉 -->
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">11</span>
+      <span class="section-title">毎日の合言葉</span>
+    </div>
+    <div class="section-body">
+      <div class="kotowaza">追わない。
+待つ。
+
+話題株ではなく、ロックオン銘柄。
+
+上がっている銘柄ではなく、
+買いたい位置まで下がった銘柄。
+
+チャートを読むのではなく、
+買える型を探す。
+
+恐怖で買わない。
+欲で持ちすぎない。
+
+チェックアプリは、
+売買を増やすためではなく、
+売買を絞るために使う。
+
+コツコツ増やし、
+暴落相場を利用して、
+10年後に資産1億円を目指す。</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const d = new Date();
+const days = ['日','月','火','水','木','金','土'];
+document.getElementById('today-date').textContent =
+  `${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日（${days[d.getDay()]}）`;
+</script>
+
+
+
+</body></html>
